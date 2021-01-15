@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 
 // Imoport routes
 const authRoute = require('./routes/auth')
+const postRoute = require('./routes/post')
 
 dotenv.config();
 
@@ -22,7 +23,8 @@ mongoose.connect(
 app.use(express.json())
 
 // Route Middlewares
-app.use('/api/user', authRoute)
+app.use('/api/user', authRoute);
+app.use('/api/posts', postRoute);
 
 console.log('STARTING: SERVER')
 app.listen(3000, () => { console.log('SUCCESS: SERVER') })
