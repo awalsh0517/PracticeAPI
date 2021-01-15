@@ -1,13 +1,13 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 
 
 // Imoport routes
 const authRoute = require('./routes/auth')
 
-dotenv.config()
+dotenv.config();
 
 // connect to DB
 mongoose.connect(
