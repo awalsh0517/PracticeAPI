@@ -1,5 +1,6 @@
 // Validation
 const Joi = require('joi')
+// const Joi = require('@hapi/joi')
 
 
 //register validation
@@ -10,7 +11,7 @@ const registerValidation = (data) => {
     password: Joi.string().min(6).required()
   })
 
-  return Joi.validate(data, schema)
+  return schema.validate(data)
 }
 
 const loginValidation = (data) => {
@@ -19,7 +20,7 @@ const loginValidation = (data) => {
     password: Joi.string().min(6).required()
   })
 
-  return Joi.validate(data, schema)
+  return schema.validate(data)
 }
 
 
