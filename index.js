@@ -10,11 +10,13 @@ const authRoute = require('./routes/auth')
 dotenv.config();
 
 // connect to DB
+console.log('STARTING: DB CONNECTION')
 mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
-
-  () => console.log('connected to db'))
+)
+  .then(() => { console.log('SUCCESS: DB CONNECTION') })
+  .catch(err => { console.log('ERROR: DB CONNECTION') })
 
 //Middleware
 app.use(express.json())
@@ -22,4 +24,5 @@ app.use(express.json())
 // Route Middlewares
 app.use('/api/user', authRoute)
 
-app.listen(3000, () => console.log('Server is running'))
+console.log('STARTING: SERVER')
+app.listen(3000, () => { console.log('SUCCESS: SERVER') })

@@ -10,9 +10,8 @@ router.post('/register', async (req, res) => {
 
   //Check if user is in database
   const emailExist = await User.findOne({ email: req.body.email })
-  if (emailExist) {
-    return res.status(400).send('Email aready exists')
-  }
+  console.log(emailExist)
+  if (emailExist) return res.status(400).send('Email aready exists')
 
   //Hash the Password
   const salt = await bcrypt.genSalt(10)
@@ -41,7 +40,7 @@ router.post("/login", async (req, res) => {
   // checking if email exists
   const user = await User.findOne({ email: req.body.email })
   if (!user) return res.status(400).send('Email or password is wrong')
-  
+
   // checking if password is correct
   const validPass = await bcrypt.compare(req.body.password, user.password)
   if (!validPass) return res.status(400).send('Invalid password')
